@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'flowser'
+  s.name        = 'flowster'
   s.version     = '0.0.1'
   s.licenses    = ['MIT']
   s.author      = 'Clemens Kofler'

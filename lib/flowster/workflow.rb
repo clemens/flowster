@@ -25,7 +25,7 @@ module Flowster
     end
 
     def in_state?(workflowable, state)
-      workflowable.state == state.name
+      workflowable.state.to_sym == state.name
     end
 
     def transition(name, from: nil, to: nil)
@@ -37,7 +37,7 @@ module Flowster
 
     def possible_transitions_for(workflowable)
       @transitions.values.select do |transition|
-        transition.current_state.name == workflowable.state &&
+        transition.current_state.name == workflowable.state.to_sym &&
         (
           (preconditions = @preconditions[transition.name]).nil? ||
           preconditions.pass?(workflowable)
@@ -51,7 +51,7 @@ module Flowster
     end
 
     def can_transition?(workflowable, transition_name)
-      possible_transitions_for(workflowable).map(&:name).include?(transition_name)
+      possible_transitions_for(workflowable).map { |transition| transition.name.to_sym }.include?(transition_name.to_sym)
     end
 
     def perform_transition(workflowable, transition_name, *args, &block)

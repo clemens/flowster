@@ -1,7 +1,7 @@
 module Flowster
   module Workflowable
     def self.included(base)
-      base.send(:attr_accessor, :state, :workflow)
+      base.send(:attr_accessor, :workflow)
     end
 
     def with_workflow(name)

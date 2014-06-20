@@ -13,6 +13,10 @@ module Flowster
       end
     end
 
+    def respond_to_missing?(name, include_private = false)
+      workflow.respond_to?(name) || super
+    end
+
     # FIXME I'd rather not proxy everything to the workflow object all the time
     def method_missing(name, *args, &block)
       return super unless workflow.respond_to?(name)
